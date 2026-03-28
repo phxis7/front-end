@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { API_URL } from "../services/api";
 
-const Register = () => {
+const Register: React.FC = () => {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
@@ -21,11 +21,10 @@ const Register = () => {
       });
 
       const data = await response.json();
-
       setMessage(data.message);
 
     } catch {
-      setMessage("Erro ao cadastrar");
+      setMessage("Erro ao conectar com o servidor");
     }
   };
 
@@ -36,10 +35,26 @@ const Register = () => {
       {message && <p>{message}</p>}
 
       <form onSubmit={handleRegister}>
-        <input placeholder="Nome" onChange={(e) => setNome(e.target.value)} />
-        <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-        <input placeholder="CPF" onChange={(e) => setCpf(e.target.value)} />
-        <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
+        <input
+          placeholder="Nome"
+          onChange={(e) => setNome(e.target.value)}
+        />
+
+        <input
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          placeholder="CPF"
+          onChange={(e) => setCpf(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Senha"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
         <button type="submit">Cadastrar</button>
       </form>
